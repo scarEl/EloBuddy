@@ -12,6 +12,7 @@ namespace Polar_Bear
         public static Menu ActivatorMenu;
         public static Menu MiscMenu;
         public static Menu SmiteMenu;
+        public static Menu DrawingsMenu;
 
 
         public static void CreateMenu()
@@ -20,6 +21,9 @@ namespace Polar_Bear
             ComboMenu = FirstMenu.AddSubMenu("Combo Settings");
             JungleClearMenu = FirstMenu.AddSubMenu("Jungle Settings");
             ActivatorMenu = FirstMenu.AddSubMenu("Activator Settings");
+            MiscMenu = FirstMenu.AddSubMenu("Misc Settings");
+            SmiteMenu = FirstMenu.AddSubMenu("Smite Settings");
+            DrawingsMenu = FirstMenu.AddSubMenu("Drawings Settings");
 
             ComboMenu.AddGroupLabel("Combo Settings");
             ComboMenu.AddLabel("Big Thanks to Wladi0");
@@ -40,13 +44,16 @@ namespace Polar_Bear
             JungleClearMenu.Add("E", new CheckBox("Use E"));
 
             SmiteMenu.AddGroupLabel("Smite Settings");
-            //SmiteMenu.Add("Smite", new CheckBox("Use Smite (useless atm)")); //todo
+            SmiteMenu.Add("Smite", new CheckBox("Useless Checkbox")); //todo
             SmiteMenu.AddLabel("Currently not Supported, Use a extra Smite Addon."); //useless stuff
 
             ActivatorMenu.AddGroupLabel("Activator Settings");
-            ActivatorMenu.AddLabel("Supports only most used Items for example: Hydra");
+            ActivatorMenu.AddLabel("Supports only Hydra at the moment (All Hydra types & Tiamat)");
             ActivatorMenu.Add("Hydra", new CheckBox("Use Hydra(all)"));
 
+            DrawingsMenu.AddGroupLabel("Drawings Settings");
+            DrawingsMenu.Add("Q", new CheckBox("Draw Q"));
+            DrawingsMenu.Add("E", new CheckBox("Draw E"));
         }
     }
 }

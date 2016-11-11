@@ -10,3 +10,15 @@ C:\Users\alexj\Documents\Visual Studio 2015\Projects\Polar_Bear\Polar_Bear\bin\R
 C:\Users\alexj\Documents\Visual Studio 2015\Projects\Polar_Bear\Polar_Bear\obj\Release\Polar_Bear.csprojResolveAssemblyReference.cache
 C:\Users\alexj\Documents\Visual Studio 2015\Projects\Polar_Bear\Polar_Bear\obj\Release\Polar_Bear.exe
 C:\Users\alexj\Documents\Visual Studio 2015\Projects\Polar_Bear\Polar_Bear\obj\Release\Polar_Bear.pdb
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\Polar_Bear.exe.config
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\Polar_Bear.exe
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\Polar_Bear.pdb
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\EloBuddy.dll
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\EloBuddy.SDK.dll
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\SharpDX.dll
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\EloBuddy.Sandbox.dll
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\bin\Release\Newtonsoft.Json.dll
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\obj\Release\Polar_Bear.csprojResolveAssemblyReference.cache
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\obj\Release\Polar_Bear.exe
+C:\Users\alexj\Documents\GitHub\EloBuddy\Polar_Bear\Polar_Bear\obj\Release\Polar_Bear.pdb

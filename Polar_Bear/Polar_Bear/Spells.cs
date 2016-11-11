@@ -19,11 +19,11 @@ namespace Polar_Bear
             R = new Spell.Active(SpellSlot.R, 125);
         }
 
-        public static Item Hydra = new Item(ItemId.Ravenous_Hydra_Melee_Only);
-        public static Item TitanicHydra = new Item(ItemId.Titanic_Hydra);
-        public static Item Hydra2 = new Item(ItemId.Ravenous_Hydra);
-        public static Item Tiamat = new Item(ItemId.Tiamat);
-        public static Item TiamatMelee = new Item (ItemId.Tiamat_Melee_Only);
+        public static Item Hydra = new Item(ItemId.Ravenous_Hydra_Melee_Only,250);
+        public static Item TitanicHydra = new Item(ItemId.Titanic_Hydra,250);
+        public static Item Hydra2 = new Item(ItemId.Ravenous_Hydra,250);
+        public static Item Tiamat = new Item(ItemId.Tiamat,250);
+        public static Item TiamatMelee = new Item (ItemId.Tiamat_Melee_Only,250);
 
         public static List<Item> ItemList = new List<Item>
         {

@@ -7,6 +7,7 @@ using static Polar_Bear.Combo;
 using static Polar_Bear.JungleClear;
 using static Polar_Bear.Spells;
 using static Polar_Bear.Menus;
+using static Polar_Bear.Drawings;
 
 namespace Polar_Bear
 {
@@ -27,14 +28,15 @@ namespace Polar_Bear
 
             Menus.CreateMenu();
             Spells.InitializeSpells();
+            Drawings.CreateDrawings();
         }
 
         private static void Game_OnUpdate(EventArgs args)
         {
 
-            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) Execute2();
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) ComboExecute();
 
-            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear)) Execute1();
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear)) JungleExecute();
         }
 
         static void Gapcloser_OnGapcloser(Obj_AI_Base sender, Gapcloser.GapcloserEventArgs args)
