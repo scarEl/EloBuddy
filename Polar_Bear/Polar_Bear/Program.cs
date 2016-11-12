@@ -5,6 +5,7 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using static Polar_Bear.Combo;
 using static Polar_Bear.JungleClear;
+using static Polar_Bear.LaneClear;
 using static Polar_Bear.Spells;
 using static Polar_Bear.Menus;
 using static Polar_Bear.Drawings;
@@ -37,6 +38,8 @@ namespace Polar_Bear
             if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) ComboExecute();
 
             if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear)) JungleExecute();
+
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear)) LaneExecute();
         }
 
         static void Gapcloser_OnGapcloser(Obj_AI_Base sender, Gapcloser.GapcloserEventArgs args)

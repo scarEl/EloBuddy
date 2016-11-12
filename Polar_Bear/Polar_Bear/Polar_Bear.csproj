@@ -55,6 +55,7 @@
     <Compile Include="Combo.cs" />
     <Compile Include="Drawings.cs" />
     <Compile Include="JungleClear.cs" />
+    <Compile Include="LaneClear.cs" />
     <Compile Include="Menus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

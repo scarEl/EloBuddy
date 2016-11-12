@@ -12,7 +12,7 @@ namespace Polar_Bear
 
         public static void ComboExecute()
         {
-            var target = TargetSelector.GetTarget(Spells.Q.Range, DamageType.Physical);
+            var target = TargetSelector.GetTarget(Spells.Q.Range, DamageType.Mixed);
 
             if ((target == null) || target.IsInvulnerable) return;
 
@@ -68,7 +68,7 @@ namespace Polar_Bear
             {
                 var Enemy = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.IsValidTarget(Spells.E.Range) && x.IsValid);
 
-                if (target.IsValidTarget(Spells.R.Range) && Spells.R.IsReady()
+                if (Enemy.IsValidTarget(Spells.R.Range) && Spells.R.IsReady()
                     && Player.Instance.CountEnemiesInRange(250) >= ComboMenu["REnemies"].Cast<Slider>().CurrentValue)
                 {
                     if (Enemy.HealthPercent <= ComboMenu["Rtargethealth"].Cast<Slider>().CurrentValue)

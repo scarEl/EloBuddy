@@ -23,6 +23,7 @@ namespace Polar_Bear
                     }
                 }
             }
+
             if (JungleClearMenu["E"].Cast<CheckBox>().CurrentValue && E.IsReady())
             {
                 foreach (var minion in junglemonster)

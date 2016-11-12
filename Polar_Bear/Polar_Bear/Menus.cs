@@ -13,6 +13,7 @@ namespace Polar_Bear
         public static Menu MiscMenu;
         public static Menu SmiteMenu;
         public static Menu DrawingsMenu;
+        public static Menu LaneClearMenu;
 
 
         public static void CreateMenu()
@@ -24,6 +25,7 @@ namespace Polar_Bear
             MiscMenu = FirstMenu.AddSubMenu("Misc Settings");
             SmiteMenu = FirstMenu.AddSubMenu("Smite Settings");
             DrawingsMenu = FirstMenu.AddSubMenu("Drawings Settings");
+            LaneClearMenu = FirstMenu.AddSubMenu("Lane Settings");
 
             ComboMenu.AddGroupLabel("Combo Settings");
             ComboMenu.AddLabel("Big Thanks to Wladi0");
@@ -31,7 +33,8 @@ namespace Polar_Bear
             ComboMenu.Add("W", new CheckBox("Use W"));
             ComboMenu.Add("E", new CheckBox("Use E"));
             ComboMenu.Add("R", new CheckBox("Use R"));
-            ComboMenu.Add("Whealth", new Slider("Enemys health in % to use W", 15, 0, 100));
+            ComboMenu.Add("Whealth", new Slider("Targets health in % to use W", 70, 0, 100));
+            ComboMenu.AddLabel("I recommend 30% to 70% Base: 70%");
             ComboMenu.Add("REnemies", new Slider("Enemies in Range to use R", 2, 1, 5));
             ComboMenu.Add("Rtargethealth", new Slider("Enemys Health in % to use R", 40, 0, 100));
 
@@ -42,6 +45,12 @@ namespace Polar_Bear
             JungleClearMenu.AddGroupLabel("JungleClear Settings");
             JungleClearMenu.Add("W", new CheckBox("Use W"));
             JungleClearMenu.Add("E", new CheckBox("Use E"));
+
+            LaneClearMenu.AddGroupLabel("LaneClear Settings");
+            LaneClearMenu.Add("W", new CheckBox("Use W"));
+            LaneClearMenu.Add("ManaW", new Slider("Manamanger for W", 30, 0, 100));
+            LaneClearMenu.Add("E", new CheckBox("Use E"));
+            LaneClearMenu.Add("MinMinions", new Slider("Minimum Minions to Cast E", 2, 1, 10));
 
             SmiteMenu.AddGroupLabel("Smite Settings");
             SmiteMenu.Add("Smite", new CheckBox("Useless Checkbox")); //todo
