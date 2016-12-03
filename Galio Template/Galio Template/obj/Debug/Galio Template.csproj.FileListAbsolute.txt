@@ -1,1 +1,2 @@
 c:\users\alexj\documents\visual studio 2015\Projects\Galio Template\Galio Template\bin\Debug\Galio Template.exe.config
+C:\Users\alexj\Documents\GitHub\EloBuddy\Galio Template\Galio Template\bin\Debug\Galio Template.exe.config

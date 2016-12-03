@@ -18,7 +18,7 @@ namespace Galio_Template
             {
                 if (target.IsValidTarget(Spells.Q.Range) && Spells.Q.IsReady())
                 {
-                    Spells.Q.Cast();
+                    Spells.Q.Cast(target);
                 }
             }
 

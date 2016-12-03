@@ -4,6 +4,7 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu.Values;
 using static Galio_Template.Combo;
+using static Galio_Template.LaneClear;
 
 namespace Galio_Template
 {
@@ -31,6 +32,7 @@ namespace Galio_Template
         private static void OnTick(EventArgs args)
         {
             if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) ComboExecute();
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear)) LaneExecute();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Galio_Template
         public static Menu FirstMenu;
         public static Menu ComboMenu;
         public static Menu DrawingsMenu;
+        public static Menu LaneMenu;
 
         public static void CreateMenu()
         {
@@ -19,6 +20,13 @@ namespace Galio_Template
             // it will show those 2 texts between " "
             ComboMenu = FirstMenu.AddSubMenu("Combo name since this will be our Combo");
             DrawingsMenu = FirstMenu.AddSubMenu("Drawings name example");
+            LaneMenu = FirstMenu.AddSubMenu("Lane name example");
+
+            //LaneClear menu example
+            LaneMenu.AddGroupLabel("Lane Settings");
+            LaneMenu.Add("Q", new CheckBox("Use Q"));
+            LaneMenu.Add("E", new CheckBox("Use E"));
+            LaneMenu.Add("MinManaQ", new Slider("Min Mana to cast Q", 30, 1, 99));
 
             //examples
             ComboMenu.AddGroupLabel("Combo Settings"); //Combo Settings will be on top of the actual menu name which is a SubMenu
