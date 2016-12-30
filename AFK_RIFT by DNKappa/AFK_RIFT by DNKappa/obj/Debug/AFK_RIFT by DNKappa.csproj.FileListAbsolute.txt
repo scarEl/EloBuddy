@@ -1,1 +1,2 @@
 c:\users\alexj\documents\visual studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Debug\AFK_RIFT by DNKappa.exe.config
+C:\Users\alexj\Documents\GitHub\EloBuddy\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Debug\AFK_RIFT by DNKappa.exe.config

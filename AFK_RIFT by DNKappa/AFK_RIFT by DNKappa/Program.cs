@@ -86,8 +86,11 @@ namespace AFK_RIFT_by_DNKappa
         {
             Hacks.AntiAFK = true;
             //Hacks.GameObjectCache = true;
-
-            if (Game.Mode == GameMode.Running)
+            Game.OnLoad += OnloadingComplete;
+        }
+        private static void OnloadingComplete(EventArgs args)
+        {
+        if (Game.Mode == GameMode.Running)
             {
                 Game_OnStart(new EventArgs());
             }
