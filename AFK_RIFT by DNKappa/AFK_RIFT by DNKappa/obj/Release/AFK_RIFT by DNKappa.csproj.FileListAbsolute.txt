@@ -1,0 +1,11 @@
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\AFK_RIFT by DNKappa.exe.config
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\AFK_RIFT by DNKappa.exe
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\AFK_RIFT by DNKappa.pdb
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\EloBuddy.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\EloBuddy.SDK.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\SharpDX.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\EloBuddy.Sandbox.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\bin\Release\Newtonsoft.Json.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\obj\Release\AFK_RIFT by DNKappa.exe
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\AFK_RIFT by DNKappa\AFK_RIFT by DNKappa\obj\Release\AFK_RIFT by DNKappa.pdb
