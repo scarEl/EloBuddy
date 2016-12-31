@@ -5,6 +5,7 @@ using SharpDX;
 using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Events;
 
 namespace AFK_RIFT_by_DNKappa
 {
@@ -86,7 +87,7 @@ namespace AFK_RIFT_by_DNKappa
         {
             Hacks.AntiAFK = true;
             //Hacks.GameObjectCache = true;
-            Game.OnLoad += Game_OnStart;
+            Loading.OnLoadingComplete += Game_OnStart;
         }
 
         private static void Game_OnStart(EventArgs args)
