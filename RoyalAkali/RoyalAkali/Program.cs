@@ -49,8 +49,7 @@ namespace RoyalAkali
 
         static void OnGameLoad(EventArgs args)
         {
-            if (Player.Instance.ChampionName != "Akali")
-                return;
+            if (Player.Instance.ChampionName == "Akali")
 
             LoadMenu();
             UpdateChecks();
@@ -80,6 +79,10 @@ namespace RoyalAkali
         static void LoadMenu()
         {
             FirstMenu = MainMenu.AddMenu("Royal" + Player.Instance.ChampionName, Player.Instance.ChampionName.ToLower());
+            Combo = FirstMenu.AddSubMenu("Combo Settings");
+            Misc = FirstMenu.AddSubMenu("Misc Settings");
+            Drawings = FirstMenu.AddSubMenu("Drawings Settings");
+            Clear = FirstMenu.AddSubMenu("Lane Settings");
 
             Combo.AddGroupLabel("Combo Options");
             Combo.Add("useQ", new CheckBox("Use Q in Combo"));
