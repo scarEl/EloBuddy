@@ -40,7 +40,7 @@ namespace RoyalAkali
         private static float assignTime = 0f;
         private static JumpUnit first_unit = new JumpUnit(player.Position, player), second_unit = first_unit;
         private static bool gotPath = false;
-        private static readonly object localVersion = 1.10;
+        private static readonly object localVersion = 1.00;
 
         static void Main(string[] args)
         {
@@ -123,18 +123,40 @@ namespace RoyalAkali
         {
             Chat.Print("--------------------------------------------------------------------------------");
             WebClient client = new WebClient();
-            string version = client.DownloadString("https://raw.github.com/princer007/LSResurrected/master/RoyalRapistAkali/version");
+            string version = client.DownloadString("https://raw.githubusercontent.com/Ouija01/Elobuddy/master/RoyalAkali/Version");
             if (version.Remove(4).Equals(localVersion))
                 Chat.Print("== Your copy of Royal Rapist Akali is updated! GL & HF! ==");
             else
-                Chat.Print("== Royal Rapist Akali got an update. Reload the Addon in your Loader and Press F5! ==");
+                Chat.Print("== Royal Akali got an update. Reload the Addon in your Loader and Press F5! ==");
         }
 
         private static void onUpdate(EventArgs args)
         {
-            Orbwalker.DisableAttacking = false;
-            switch (Orbwalker.ActiveModesFlags)
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
             {
+                RapeTime();
+            };
+
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Harass))
+            {
+                if (Harass["useQ"].Cast<CheckBox>().CurrentValue)
+                    castQ(true);
+                if (Harass["useE"].Cast<CheckBox>().CurrentValue)
+                    castE(true);
+            };
+
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear))
+            {
+                if (Clear["useQ"].Cast<CheckBox>().CurrentValue)
+                    castQ(false);
+                if (Clear["useE"].Cast<CheckBox>().CurrentValue)
+                    castE(false);
+            };
+
+            if (Misc["escape"].Cast<KeyBind>().CurrentValue) Escape();
+
+            /*switch (Orbwalker.ActiveModesFlags)
+            { 
                 case Orbwalker.ActiveModes.Combo:
                     RapeTime();
                     break;
@@ -152,17 +174,13 @@ namespace RoyalAkali
                     if (Clear["useE"].Cast<CheckBox>().CurrentValue)
                         castE(false);
                     break;
-            }
-            if (Misc["escape"].Cast<CheckBox>().CurrentValue) Escape();
+            }*/
         }
 
         private static void onDraw(EventArgs args)
         {
             if (Misc["escape"].Cast<KeyBind>().CurrentValue)
             {
-                //Drawing.DrawCircle(Game.CursorPos, 200, W.IsReady() ? Color.Color.Blue : Color.Color.Red);
-                //Drawing.DrawCircle(player.Position, R.Range, menu.Item("Rrange").GetValue<Geometry.Polygon.Circle>().Color, 13);
-
                 Drawing.DrawCircle(Game.CursorPos, 200, W.IsReady() ? Color.Color.Blue : Color.Color.Red);
                 Drawing.DrawCircle(Player.Instance.Position, R.Range, R.IsReady() ? Color.Color.Blue : Color.Color.Red);
             }
