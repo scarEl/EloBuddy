@@ -27,6 +27,7 @@ namespace RoyalAkali
         public static Menu Combo;
         public static Menu Harass;
         public static Menu Clear;
+        public static Menu Jungle;
         public static Menu Misc;
         public static Menu Drawings;
 
@@ -40,7 +41,7 @@ namespace RoyalAkali
         private static float assignTime = 0f;
         private static JumpUnit first_unit = new JumpUnit(player.Position, player), second_unit = first_unit;
         private static bool gotPath = false;
-        static readonly string localVersion = "1.02";
+        static readonly string localVersion = "1.04";
 
         static void Main(string[] args)
         {
@@ -86,8 +87,9 @@ namespace RoyalAkali
         {
             FirstMenu = MainMenu.AddMenu("Royal" + Player.Instance.ChampionName, Player.Instance.ChampionName.ToLower());
             Combo = FirstMenu.AddSubMenu("Combo Settings");
-            Harass = FirstMenu.AddSubMenu("Harass Menu");
+            Harass = FirstMenu.AddSubMenu("Harass Settings");
             Clear = FirstMenu.AddSubMenu("Lane Settings");
+            Jungle = FirstMenu.AddSubMenu("Jungle Settings");
             Misc = FirstMenu.AddSubMenu("Misc Settings");
             Drawings = FirstMenu.AddSubMenu("Drawings Settings");
 
@@ -105,6 +107,10 @@ namespace RoyalAkali
             Clear.Add("useQ", new CheckBox("Use Q in Laneclear", true));
             Clear.Add("useE", new CheckBox("Use E in Laneclear", true));
             Clear.Add("hitCounter", new Slider("Use E if will hit {0} minions", 3, 1, 6));
+
+            Jungle.AddGroupLabel("Jungle Clear Options");
+            Jungle.Add("useQ", new CheckBox("Use Q in Laneclear", true));
+            Jungle.Add("useE", new CheckBox("Use E in Laneclear", true));
 
             Misc.AddGroupLabel("Miscellaneous");
             Misc.Add("escape", new KeyBind("Escape Key", true, KeyBind.BindTypes.HoldActive, 'G'));
@@ -167,6 +173,14 @@ namespace RoyalAkali
                 if (Clear["useQ"].Cast<CheckBox>().CurrentValue)
                     castQ(false);
                 if (Clear["useE"].Cast<CheckBox>().CurrentValue)
+                    castE(false);
+            };
+
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear))
+            {
+                if (Jungle["useQ"].Cast<CheckBox>().CurrentValue)
+                    castQ(false);
+                if (Jungle["useE"].Cast<CheckBox>().CurrentValue)
                     castE(false);
             };
 
@@ -262,32 +276,6 @@ namespace RoyalAkali
                         break;
                 }
         }
-
-        /*private static void castQ(bool mode)
-        {
-            if (!Q.IsReady()) return;
-            if (mode)
-            {
-                Obj_AI_Base target = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
-                if (!target.IsValidTarget(Q.Range)) return;
-                Q.Cast(target);
-            }
-            else
-            {
-                foreach (Obj_AI_Base minion in EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, player.Position, Q.Range))
-                    if (hasBuff(minion, "AkaliMota") && ObjectManager.Player.GetAutoAttackDamage(player) >= player.Distance(minion)) Orbwalker.ForcedTarget=minion;
-                foreach (Obj_AI_Base minion in EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, player.Position, Q.Range))
-                    if (
-                        Prediction.Health.GetPrediction(minion,          //E.Delay
-                            (int) (E.CastDelay + (minion.Distance(player)/250))*1000) <
-                        EloBuddy.Player.Instance.GetSpellDamage(minion, SpellSlot.Q)
-                        &&
-                        Prediction.Health.GetPrediction(minion,          //E.Delay
-                            (int) (E.CastDelay + (minion.Distance(player)/250))*1000) > 0 &&
-                        player.Distance(minion) > ObjectManager.Player.GetAutoAttackDamage(player))
-                        Q.Cast(minion);
-            }
-        }*/
 
         private static void castQ(bool mode)
         {
