@@ -10,7 +10,6 @@ using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Spells;
 using SharpDX;
-using static RoyalAkali.HealthPrediction;
 using Color = System.Drawing;
 
 namespace RoyalAkali
