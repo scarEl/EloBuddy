@@ -71,8 +71,16 @@ namespace RoyalAkali
         }
         private static void OnCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
-            if (!sender.IsMe) return;
-            //Console.WriteLine(args.SData.Name + " was sent on " + args.Target.Name+" in "+Game.Time);
+            if (!sender.IsEnemy) return;
+            if (args.SData.Name == "TrinketTotemLvl3B" || args.SData.Name == "VisionWard" )
+            {
+                if (args.End.Distance(player.Position) < 1200)
+                    //Utility.DelayAction.Add(200, () => AntiPink(args.End));
+                    Core.DelayAction(delegate
+                    {
+                        AntiPink(args.End);
+                    }, 200);
+            }
         }
         private static void LoadMenu()
         {
@@ -103,6 +111,7 @@ namespace RoyalAkali
             Misc.Add("RCounter", new Slider("Do not escape if R<", 1, 1, 3));
             Misc.Add("TowerDive", new Slider("Do not tower dive if your HP is under {0}", 25, 1, 100));
             Misc.Add("Enemies", new Slider("Do not rape if there is {0} enemies around target", 0, 0, 5));
+            Misc.Add("RKillsteal", new CheckBox("Always try to KS with R"));
             Misc.Add("PanicW", new Slider("If {0} enemies around, cast W", 1, 1, 5));
             Misc.Add("PanicWN", new Slider("If your HP is under {0}%", 25, 0, 100));
 
@@ -135,6 +144,11 @@ namespace RoyalAkali
 
         private static void onUpdate(EventArgs args)
         {
+            if (Misc["RKillsteal"].Cast<CheckBox>().CurrentValue)
+                foreach (Obj_AI_Base enemy in ObjectManager.Get<Obj_AI_Base>())
+                    if (enemy.IsEnemy && Vector3.Distance(player.Position, enemy.Position) <= R.Range && EloBuddy.Player.Instance.GetSpellDamage(enemy, SpellSlot.R) > enemy.Health && ultiCount() > 0 && R.IsReady())
+                        R.Cast(enemy);
+
             if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
             {
                 RapeTime();
@@ -228,7 +242,28 @@ namespace RoyalAkali
             #endregion
         }
 
-        private static void castQ(bool mode)
+        private static void AntiPink(Vector3 position2)
+        {
+            float pd = player.Distance(position2);
+            foreach (var item in player.InventoryItems)
+                switch (item.Name)
+                {
+                    case "TrinketSweeperLvl1":
+                        if (pd < 800)
+                            item.Cast(V2E(player.Position, position2, 400).To3D());
+                        break;
+                    case "TrinketSweeperLvl2":
+                        if (pd < 1200)
+                            item.Cast(V2E(player.Position, position2, 600).To3D());
+                        break;
+                    case "TrinketSweeperLvl3":
+                        if (pd < 1200)
+                            item.Cast(V2E(player.Position, position2, 600).To3D());
+                        break;
+                }
+        }
+
+        /*private static void castQ(bool mode)
         {
             if (!Q.IsReady()) return;
             if (mode)
@@ -252,6 +287,43 @@ namespace RoyalAkali
                         player.Distance(minion) > ObjectManager.Player.GetAutoAttackDamage(player))
                         Q.Cast(minion);
             }
+        }*/
+
+        private static void castQ(bool mode)
+        {
+            if (!Q.IsReady()) return;
+            if (mode)
+            {
+                Obj_AI_Base target = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
+                if (!target.IsValidTarget(Q.Range)) return;
+                Q.Cast(target);
+            }
+            else
+            {
+                foreach (
+                    Obj_AI_Base minion in
+                        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,player.Position, Q.Range))
+                    if (hasBuff(minion, "AkaliMota") &&
+                        ObjectManager.Player.GetAutoAttackDamage(player) >= Vector3.Distance(player.Position, minion.Position))
+                        Orbwalker.ForcedTarget = minion;
+
+                foreach (
+                    Obj_AI_Base minion in
+                        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, player.Position, Q.Range))
+                    if (Prediction.Health.GetPrediction(minion,
+                            (int)((Vector3.Distance(player.Position, minion.Position) / 250)) * 1000) <
+                        Player.Instance.GetSpellDamage(minion, SpellSlot.Q) &&
+                        Prediction.Health.GetPrediction(minion,
+                            (int)((Vector3.Distance(player.Position, minion.Position) / 250)) * 1000) > 0 &&
+                        Vector3.Distance(player.Position, minion.Position) > ObjectManager.Player.GetAutoAttackDamage(player))
+                        Q.Cast(minion);
+
+                foreach (Obj_AI_Base minion in EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,player.ServerPosition, Q.Range))
+                    if (Vector3.Distance(player.Position, minion.Position) <= Q.Range)
+                        Q.Cast(minion);
+
+
+            }
         }
 
         private static void castE(bool mode)
@@ -271,7 +343,9 @@ namespace RoyalAkali
             {   //Minions in E range                                                                            >= Value in menu
                 if (Player.Instance.CountEnemyMinionsInRange(E.Range) >= Clear["hitCounter"].Cast<Slider>().CurrentValue)
                 {
-                    E.Cast();
+                    foreach (Obj_AI_Base minion in EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,player.ServerPosition, Q.Range))
+                        if (Vector3.Distance(player.Position, minion.Position) <= E.Range)
+                            E.Cast();
                 }
             }
         }
