@@ -1,0 +1,13 @@
+c:\users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\RoyalAkali.exe.config
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\RoyalAkali.exe
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\RoyalAkali.pdb
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\EloBuddy.dll
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\EloBuddy.Sandbox.dll
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\EloBuddy.SDK.dll
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\SharpDX.dll
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\obj\Debug\RoyalAkali.csprojResolveAssemblyReference.cache
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\obj\Debug\RoyalAkali.csproj.RoyalAkali.exe.config
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\obj\Debug\RoyalAkali.exe
+C:\Users\alexj\documents\visual studio 2015\Projects\RoyalAkali\RoyalAkali\obj\Debug\RoyalAkali.pdb
