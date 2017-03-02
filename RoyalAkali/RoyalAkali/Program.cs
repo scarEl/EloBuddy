@@ -50,10 +50,8 @@ namespace RoyalAkali
         static void OnGameLoad(EventArgs args)
         {
             if (Player.Instance.ChampionName != "Akali") return;
-
-            LoadMenu();
             UpdateChecks();
-
+            LoadMenu();
             Q = new Spell.Targeted(SpellSlot.Q, 600);
             W = new Spell.Active(SpellSlot.W, 700);
             E = new Spell.Active(SpellSlot.E, 290);
@@ -71,12 +69,12 @@ namespace RoyalAkali
             Chat.Print("RoyalAkali by Ouija Loaded.");
             Console.WriteLine("\a \a \a");
         }
-        static void OnCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
+        private static void OnCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
         {
             if (!sender.IsMe) return;
             //Console.WriteLine(args.SData.Name + " was sent on " + args.Target.Name+" in "+Game.Time);
         }
-        static void LoadMenu()
+        private static void LoadMenu()
         {
             FirstMenu = MainMenu.AddMenu("Royal" + Player.Instance.ChampionName, Player.Instance.ChampionName.ToLower());
             Combo = FirstMenu.AddSubMenu("Combo Settings");
@@ -106,6 +104,12 @@ namespace RoyalAkali
             Misc.Add("TowerDive", new Slider("Do not tower dive if your HP is under {0}", 25, 1, 100));
             Misc.Add("Enemies", new Slider("Do not rape if there is {0} enemies around target", 0, 0, 5));
 
+            Drawings.AddGroupLabel("Drawings");
+            Drawings.Add("Qrange", new CheckBox("Q Range"));
+            Drawings.Add("Wrange", new CheckBox("W Range"));
+            Drawings.Add("Erange", new CheckBox("E Range"));
+            Drawings.Add("Rrange", new CheckBox("R Range"));
+            Drawings.Add("RAPE", new CheckBox("Draw instakill target"));
 
             /*var dmgAfterComboItem = new MenuItem("DamageAfterCombo", "Draw damage after a rotation").SetValue(true);
             Utility.HpBarDamageIndicator.DamageToUnit += hero => (float)IsRapeble(hero);
@@ -114,16 +118,9 @@ namespace RoyalAkali
             {
                 Utility.HpBarDamageIndicator.Enabled = eventArgs.GetNewValue<bool>();
             };*/
-
-            Drawings.AddGroupLabel("Drawings");
-            Drawings.Add("Qrange", new CheckBox("Q Range"));
-            Drawings.Add("Wrange", new CheckBox("W Range"));
-            Drawings.Add("Erange", new CheckBox("E Range"));
-            Drawings.Add("Rrange", new CheckBox("R Range"));
-            Drawings.Add("RAPE", new CheckBox("Draw instakill target"));
         }
 
-        static void UpdateChecks()
+        private static void UpdateChecks()
         {
             Chat.Print("--------------------------------------------------------------------------------");
             WebClient client = new WebClient();
