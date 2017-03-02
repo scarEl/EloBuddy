@@ -10,6 +10,7 @@ using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using EloBuddy.SDK.Spells;
 using SharpDX;
+using static RoyalAkali.HealthPrediction;
 using Color = System.Drawing;
 
 namespace RoyalAkali
@@ -23,6 +24,9 @@ namespace RoyalAkali
     */
     class Program
     {
+        static readonly string localVersion = "1.05";
+
+
         public static Menu FirstMenu;
         public static Menu Combo;
         public static Menu Harass;
@@ -40,8 +44,6 @@ namespace RoyalAkali
         private static SpellSlot IgniteSlot = EloBuddy.Player.Instance.GetSpellSlotFromName("SummonerDot");
         private static float assignTime = 0f;
         private static JumpUnit first_unit = new JumpUnit(player.Position, player), second_unit = first_unit;
-        private static bool gotPath = false;
-        static readonly string localVersion = "1.04";
 
         static void Main(string[] args)
         {
@@ -185,27 +187,6 @@ namespace RoyalAkali
             };
 
             if (Misc["escape"].Cast<KeyBind>().CurrentValue) Escape();
-
-            /*switch (Orbwalker.ActiveModesFlags)
-            { 
-                case Orbwalker.ActiveModes.Combo:
-                    RapeTime();
-                    break;
-
-                case Orbwalker.ActiveModes.Harass:
-                    if (Harass["useQ"].Cast<CheckBox>().CurrentValue)
-                        castQ(true);
-                    if (Harass["useE"].Cast<CheckBox>().CurrentValue)
-                        castE(true);
-                    break;
-
-                case Orbwalker.ActiveModes.LaneClear:
-                    if (Clear["useQ"].Cast<CheckBox>().CurrentValue)
-                        castQ(false);
-                    if (Clear["useE"].Cast<CheckBox>().CurrentValue)
-                        castE(false);
-                    break;
-            }*/
         }
 
         private static void onDraw(EventArgs args)
@@ -292,22 +273,22 @@ namespace RoyalAkali
                     Obj_AI_Base minion in
                         EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,player.Position, Q.Range))
                     if (hasBuff(minion, "AkaliMota") &&
-                        ObjectManager.Player.GetAutoAttackDamage(player) >= Vector3.Distance(player.Position, minion.Position))
+                        ObjectManager.Player.GetAutoAttackRange(player) >= player.Distance(minion))
                         Orbwalker.ForcedTarget = minion;
 
                 foreach (
                     Obj_AI_Base minion in
-                        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, player.Position, Q.Range))
-                    if (Prediction.Health.GetPrediction(minion,
-                            (int)((Vector3.Distance(player.Position, minion.Position) / E.CastDelay)) * 1000) < 
+                        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,player.Position, Q.Range))
+                    if (HealthPrediction.GetHealthPrediction(minion,
+                            (int)(E.CastDelay + (minion.Distance(player) / 250)) * 1000) <
                         Player.Instance.GetSpellDamage(minion, SpellSlot.Q) &&
-                        Prediction.Health.GetPrediction(minion,
-                            (int)((Vector3.Distance(player.Position, minion.Position) / E.CastDelay)) * 1000) > 0 &&
-                        Vector3.Distance(player.Position, minion.Position) > ObjectManager.Player.GetAutoAttackDamage(player))
+                        HealthPrediction.GetHealthPrediction(minion,
+                            (int)(E.CastDelay + (minion.Distance(player) / 250)) * 1000) > 0 &&
+                        player.Distance(minion) > ObjectManager.Player.GetAutoAttackRange(player))
                         Q.Cast(minion);
 
                 foreach (Obj_AI_Base minion in EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,player.ServerPosition, Q.Range))
-                    if (Vector3.Distance(player.Position, minion.Position) <= Q.Range)
+                    if (player.Distance(minion) <= Q.Range)
                         Q.Cast(minion);
 
 
@@ -346,7 +327,6 @@ namespace RoyalAkali
                 if (rektmate.IsDead || Game.Time - assignTime > 1.5)
                 {
                     //Console.WriteLine("Unassign - " + rektmate.ChampionName + " dead: " + rektmate.IsDead + "\n\n");
-                    gotPath = false;
                     rektmate = default(Obj_AI_Base);
                 }
             }
@@ -357,7 +337,6 @@ namespace RoyalAkali
                 {
                     rektmate = possibleVictim;
                     assignTime = Game.Time;
-                    gotPath = gapclosePath(possibleVictim);
                     //Console.WriteLine("Assign - " + rektmate.ChampionName + " time: " + assignTime+"\n\n");
                 }
             }
