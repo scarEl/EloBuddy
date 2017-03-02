@@ -40,7 +40,7 @@ namespace RoyalAkali
         private static float assignTime = 0f;
         private static JumpUnit first_unit = new JumpUnit(player.Position, player), second_unit = first_unit;
         private static bool gotPath = false;
-        private static readonly object localVersion = 1.00;
+        static readonly string localVersion = "1.02";
 
         static void Main(string[] args)
         {
@@ -103,6 +103,8 @@ namespace RoyalAkali
             Misc.Add("RCounter", new Slider("Do not escape if R<", 1, 1, 3));
             Misc.Add("TowerDive", new Slider("Do not tower dive if your HP is under {0}", 25, 1, 100));
             Misc.Add("Enemies", new Slider("Do not rape if there is {0} enemies around target", 0, 0, 5));
+            Misc.Add("PanicW", new Slider("If {0} enemies around, cast W", 1, 1, 5));
+            Misc.Add("PanicWN", new Slider("If your HP is under {0}%", 25, 0, 100));
 
             Drawings.AddGroupLabel("Drawings");
             Drawings.Add("Qrange", new CheckBox("Q Range"));
@@ -195,7 +197,7 @@ namespace RoyalAkali
 
             if (Drawings["Wrange"].Cast<CheckBox>().CurrentValue)
             {
-                Drawing.DrawCircle(Game.CursorPos, W.Range, Color.Color.Purple);
+                Drawing.DrawCircle(player.Position, W.Range, Color.Color.Purple);
             }
 
             if (Drawings["Erange"].Cast<CheckBox>().CurrentValue)
@@ -286,7 +288,7 @@ namespace RoyalAkali
                     rektmate = default(Obj_AI_Base);
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { Console.WriteLine(ex); }
             try
             {
                 if (rektmate == default(Obj_AI_Base) && IsRapeble(possibleVictim) > possibleVictim.Health)
@@ -297,40 +299,15 @@ namespace RoyalAkali
                     //Console.WriteLine("Assign - " + rektmate.ChampionName + " time: " + assignTime+"\n\n");
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { Console.WriteLine(ex); }
             if (rektmate != default(Obj_AI_Base))
             {
                 //!(menu.SubMenu("misc").Item("TowerDive").GetValue<Slider>().Value < player.Health/player.MaxHealth && Utility.UnderTurret(rektmate, true)) && 
-                if (player.Distance(rektmate) < R.Range * 2 + ObjectManager.Player.GetAutoAttackDamage(player) && player.Distance(rektmate) > Q.Range)
-                    if (gotPath)
-                    {
-                        float AARange = ObjectManager.Player.GetAutoAttackDamage(player) + 50;
-                        if (second_unit.unit != rektmate && first_unit.unit != player)
-                        {
-                            if (Vector3.Distance(first_unit.Position, player.Position) > AARange &&
-                                Vector3.Distance(second_unit.Position, player.Position) > AARange &&
-                                rektmate.Distance(player) > AARange)
-                                R.Cast(first_unit.unit);
-                            else if (Vector3.Distance(second_unit.Position, player.Position) > AARange &&
-                                     rektmate.Distance(player) > AARange)
-                                R.Cast(second_unit.unit);
-                            else if (rektmate.Distance(player) > AARange)
-                                R.Cast(rektmate);
-                        }
-                        else if (first_unit.unit != player)
-                        {
-                            if (Vector3.Distance(first_unit.Position, player.Position) > AARange &&
-                                rektmate.Distance(player) > AARange)
-                                R.Cast(first_unit.unit);
-                            else if (rektmate.Distance(player) > AARange)
-                                R.Cast(rektmate);
-                        }
-                        else if (rektmate.Distance(player) > AARange)
-                            R.Cast(rektmate);
-                    }
-                    else if (player.Distance(rektmate) < Q.Range)
-                        RaperinoCasterino(rektmate);
-                    else rektmate = default(Obj_AI_Base);//Target is out of range. Unassign.
+                if (player.Distance(rektmate) < R.Range * 2 + ObjectManager.Player.GetAutoAttackRange(player) && player.Distance(rektmate) > Q.Range)
+                    CastR(rektmate.Position);
+                else if (player.Distance(rektmate) < Q.Range)
+                    RaperinoCasterino(rektmate);
+                else rektmate = default(Obj_AI_Base);//Target is out of range. Unassign.
             }
             else
             {
@@ -338,6 +315,8 @@ namespace RoyalAkali
                     castQ(true);
                 if (Combo["useE"].Cast<CheckBox>().CurrentValue)
                     castE(true);
+                if (Combo["useW"].Cast<CheckBox>().CurrentValue)
+                    castW();
                 if (Combo["useR"].Cast<CheckBox>().CurrentValue)
                 {
                     Obj_AI_Base target = TargetSelector.GetTarget(R.Range, DamageType.Magical);
@@ -346,6 +325,41 @@ namespace RoyalAkali
                 }
             }
         }
+
+        private static void castW()
+        {
+            //
+            //menu.SubMenu("misc").AddItem(new MenuItem("PanicW", "In combo if № of enemies around").SetValue(new Slider(0, 0, 5)));
+            //menu.SubMenu("misc").AddItem(new MenuItem("PanicWN", "In combo in %HP < ").SetValue(new Slider(25, 0, 100)));
+            //
+            byte enemiesAround = 0;
+            foreach (Obj_AI_Base enemy in ObjectManager.Get<Obj_AI_Base>())
+                if (enemy.IsEnemy && enemy.Distance(player) < 400) enemiesAround++;
+            if (Misc["PanicW"].Cast<Slider>().CurrentValue > enemiesAround && Misc["PanicWN"].Cast<Slider>().CurrentValue < (int)(player.Health / player.MaxHealth * 100))
+                return;
+            W.Cast(player.Position);
+        }
+
+
+        private static void CastR(Vector3 position, bool mouseJump = false)
+        {
+            Obj_AI_Base target = player;
+            foreach (Obj_AI_Base minion in ObjectManager.Get<Obj_AI_Base>())
+                if (minion.IsValidTarget(R.Range, true) && player.Distance(position, true) > minion.Distance(position, true) && minion.Distance(position, true) < target.Distance(position, true))
+                    if (mouseJump)
+                    {
+                        if (minion.Distance(position) < 200)
+                            target = minion;
+                    }
+                    else
+                        target = minion;
+            if (R.IsReady() && R.IsInRange(target.Position) && !target.IsMe)
+                if (mouseJump && target.Distance(position) < 200)
+                    R.Cast(target);
+                else if (player.Distance(position, true) > target.Distance(position, true))
+                    R.Cast(target);
+        }
+
 
         private static void RaperinoCasterino(Obj_AI_Base victim)
         {
@@ -366,13 +380,13 @@ namespace RoyalAkali
                             if (player.Spellbook.CanUseSpell((SpellSlot)item.Slot) == SpellState.Ready) item.Cast(victim);
                             break;
                     }
-                if (Q.IsReady() && Q.IsInRange(victim.Position)) Q.Cast(victim);
-                if (E.IsReady() && E.IsInRange(victim.Position)) E.Cast();
+                if (Q.IsReady() && Q.IsInRange(victim)) Q.Cast(victim);
+                if (E.IsReady() && E.IsInRange(victim)) E.Cast();
                 if (W.IsReady() && Combo["useW"].Cast<CheckBox>().CurrentValue && W.IsInRange(victim.Position) &&
                     !(hasBuff(victim, "AkaliMota") &&
                       player.Distance(victim) > ObjectManager.Player.GetAutoAttackDamage(player)))
-                    W.Cast(victim.Position);//(V2E(player.Position, victim.Position, player.Distance(victim) + W.Width * 2 - 20));
-                if (R.IsReady() && R.IsInRange(victim.Position)) R.Cast(victim);
+                    W.Cast(victim);//(V2E(player.Position, victim.Position, player.Distance(victim) + W.Width * 2 - 20));
+                if (R.IsReady() && R.IsInRange(victim)) R.Cast(victim);
                 if (IgniteSlot != SpellSlot.Unknown && EloBuddy.Player.Instance.Spellbook.CanUseSpell(IgniteSlot) == SpellState.Ready) Player.Instance.Spellbook.CastSpell(IgniteSlot, victim);
 
             }
