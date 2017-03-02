@@ -49,7 +49,7 @@ namespace RoyalAkali
 
         static void OnGameLoad(EventArgs args)
         {
-            if (Player.Instance.ChampionName == "Akali")
+            if (Player.Instance.ChampionName != "Akali") return;
 
             LoadMenu();
             UpdateChecks();
@@ -59,7 +59,7 @@ namespace RoyalAkali
             E = new Spell.Active(SpellSlot.E, 290);
             R = new Spell.Targeted(SpellSlot.R, 790);
 
-            EloBuddy.Drawing.OnDraw += onDraw;
+            Drawing.OnDraw += onDraw;
             Game.OnUpdate += onUpdate;
             Obj_AI_Base.OnProcessSpellCast += OnCast;
 
@@ -80,9 +80,10 @@ namespace RoyalAkali
         {
             FirstMenu = MainMenu.AddMenu("Royal" + Player.Instance.ChampionName, Player.Instance.ChampionName.ToLower());
             Combo = FirstMenu.AddSubMenu("Combo Settings");
+            Harass = FirstMenu.AddSubMenu("Harass Menu");
+            Clear = FirstMenu.AddSubMenu("Lane Settings");
             Misc = FirstMenu.AddSubMenu("Misc Settings");
             Drawings = FirstMenu.AddSubMenu("Drawings Settings");
-            Clear = FirstMenu.AddSubMenu("Lane Settings");
 
             Combo.AddGroupLabel("Combo Options");
             Combo.Add("useQ", new CheckBox("Use Q in Combo"));
