@@ -113,7 +113,7 @@ namespace RoyalAkali
             Jungle.Add("useE", new CheckBox("Use E in Laneclear", true));
 
             Misc.AddGroupLabel("Miscellaneous");
-            Misc.Add("escape", new KeyBind("Escape Key", true, KeyBind.BindTypes.HoldActive, 'G'));
+            Misc.Add("escape", new KeyBind("Escape Key", false, KeyBind.BindTypes.HoldActive, 'G'));
             Misc.Add("RCounter", new Slider("Do not escape if R<", 1, 1, 3));
             Misc.Add("TowerDive", new Slider("Do not tower dive if your HP is under {0}", 25, 1, 100));
             Misc.Add("Enemies", new Slider("Do not rape if there is {0} enemies around target", 0, 0, 5));
