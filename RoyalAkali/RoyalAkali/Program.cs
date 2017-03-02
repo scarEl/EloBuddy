@@ -299,10 +299,10 @@ namespace RoyalAkali
                     Obj_AI_Base minion in
                         EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, player.Position, Q.Range))
                     if (Prediction.Health.GetPrediction(minion,
-                            (int)((Vector3.Distance(player.Position, minion.Position) / 250)) * 1000) <
+                            (int)((Vector3.Distance(player.Position, minion.Position) / E.CastDelay)) * 1000) < 
                         Player.Instance.GetSpellDamage(minion, SpellSlot.Q) &&
                         Prediction.Health.GetPrediction(minion,
-                            (int)((Vector3.Distance(player.Position, minion.Position) / 250)) * 1000) > 0 &&
+                            (int)((Vector3.Distance(player.Position, minion.Position) / E.CastDelay)) * 1000) > 0 &&
                         Vector3.Distance(player.Position, minion.Position) > ObjectManager.Player.GetAutoAttackDamage(player))
                         Q.Cast(minion);
 
