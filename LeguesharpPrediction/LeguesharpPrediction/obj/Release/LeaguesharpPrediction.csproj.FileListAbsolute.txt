@@ -1,0 +1,12 @@
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\LeguesharpPrediction.exe.config
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\LeguesharpPrediction.exe
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\LeguesharpPrediction.pdb
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\EloBuddy.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\EloBuddy.Sandbox.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\EloBuddy.SDK.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\SharpDX.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Release\Newtonsoft.Json.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Release\LeguesharpPrediction.exe
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Release\LeguesharpPrediction.pdb
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Release\LeaguesharpPrediction.csprojResolveAssemblyReference.cache

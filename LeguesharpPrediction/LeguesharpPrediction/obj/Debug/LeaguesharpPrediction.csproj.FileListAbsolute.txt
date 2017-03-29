@@ -1,0 +1,13 @@
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\LeguesharpPrediction.exe.config
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\LeguesharpPrediction.exe
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\LeguesharpPrediction.pdb
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\EloBuddy.dll
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\EloBuddy.Sandbox.dll
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\EloBuddy.SDK.dll
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\SharpDX.dll
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\SharpDX.Direct3D9.dll
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\bin\Debug\Newtonsoft.Json.dll
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Debug\LeaguesharpPrediction.csprojResolveAssemblyReference.cache
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Debug\LeaguesharpPrediction.csproj.LeguesharpPrediction.exe.config
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Debug\LeguesharpPrediction.exe
+c:\users\alexj\documents\visual studio 2015\Projects\LeguesharpPrediction\LeguesharpPrediction\obj\Debug\LeguesharpPrediction.pdb
