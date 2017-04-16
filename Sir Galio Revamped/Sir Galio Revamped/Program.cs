@@ -50,15 +50,15 @@ namespace Sir_Galio_Revamped
 
         private static void OnDraw(EventArgs args)
         {
-            var targetdrawings = TargetSelector.GetTarget(5000, DamageType.Magical);
+            //var targetdrawings = TargetSelector.GetTarget(5000, DamageType.Magical);
 
-            if (Awareness["drawAllTargets"].Cast<CheckBox>().CurrentValue)
+            /*if (Awareness["drawAllTargets"].Cast<CheckBox>().CurrentValue)
             {
                 if (targetdrawings.IsInRange(Player.Instance.Position, Awareness["drawAllTargetsRange"].Cast<Slider>().CurrentValue))
                 {
                     Drawing.DrawLine(Player.Instance.Position.X,Player.Instance.Position.Y,targetdrawings.Position.X,targetdrawings.Position.Y,2,Color.Chartreuse);
                 }
-            }
+            }*/
 
             if (Rhelper["cursorLime"].Cast<CheckBox>().CurrentValue && R.IsReady())
             {
