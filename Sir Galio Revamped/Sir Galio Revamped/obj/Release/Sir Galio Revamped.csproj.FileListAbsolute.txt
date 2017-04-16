@@ -1,0 +1,12 @@
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\Sir Galio Revamped.exe.config
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\Sir Galio Revamped.exe
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\Sir Galio Revamped.pdb
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\EloBuddy.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\EloBuddy.Sandbox.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\EloBuddy.SDK.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\SharpDX.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\bin\Release\Newtonsoft.Json.dll
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\obj\Release\Sir Galio Revamped.csprojResolveAssemblyReference.cache
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\obj\Release\Sir Galio Revamped.exe
+C:\Users\alexj\Documents\Visual Studio 2015\Projects\Sir Galio Revamped\Sir Galio Revamped\obj\Release\Sir Galio Revamped.pdb
