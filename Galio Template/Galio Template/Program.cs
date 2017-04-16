@@ -21,7 +21,7 @@ namespace Galio_Template
             //this is optional
             Chat.Print("Your Text"); //this will be print if your game started
             //This is needed! you can use this as a different option:
-            //(OnTick is faster than OnUpdate but takes more resources!)
+            //(OnTick is slower than OnUpdate but takes less resources!)
             //Game.OnUpdate += OnUpdate;
             Game.OnTick += OnTick;
             Menus.CreateMenu();
