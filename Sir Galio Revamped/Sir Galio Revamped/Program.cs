@@ -32,10 +32,10 @@ namespace Sir_Galio_Revamped
         {
             //UpdateChecks();
             if (Player.Instance.Hero == Champion.Galio)
-                Chat.Print("Sir Galio V2: Sucessfully Loaded!" + "Version: " + localVersion, Color.IndianRed);
+                Chat.Print("Sir Galio Revamped: Sucessfully Loaded!" + "Version: " + localVersion, Color.IndianRed);
             else if (Player.Instance.Hero != Champion.Galio)
             {
-                Chat.Print("Sir Galio V2: Loading failed!", Color.Red);
+                Chat.Print("Sir Galio Revamped: Loading failed!", Color.Red);
                 return;
             }
             CreateMenu();
