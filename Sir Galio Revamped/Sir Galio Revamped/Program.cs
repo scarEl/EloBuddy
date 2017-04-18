@@ -154,14 +154,13 @@ namespace Sir_Galio_Revamped
                 if (W.IsReady() && target.IsValidTarget(W.Range) && W.IsInRange(target) && Q.IsOnCooldown && E.IsOnCooldown)
                 {
                     W.StartCharging();
-                    //if (target.IsInRange(Player.Instance, W.MaximumRange)) W.Cast();
                 }
             }
 
-            /*if (ComboMenu["R"].Cast<CheckBox>().CurrentValue)
+            if (ComboMenu["R"].Cast<CheckBox>().CurrentValue)
             {
 
-                var ally = EntityManager.Heroes.Allies;
+                var ally = EntityManager.Heroes.Allies.FirstOrDefault(hero => !hero.IsMe && !hero.IsInShopRange() && !hero.IsZombie && hero.Distance(Player.Instance) <= R.Range);
 
                 if (ally.IsValidTarget(Rhelper["sliderCursorLime"].Cast<Slider>().CurrentValue) && R.IsReady()
                     &&
@@ -169,7 +168,7 @@ namespace Sir_Galio_Revamped
                 {
                     R.Cast(ally);
                 }
-            }*/
+            }
         }
 
 // Lane
