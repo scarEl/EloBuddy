@@ -73,8 +73,8 @@ namespace OuijaTemplate
             LastHitMenu.Add("useQ", new CheckBox("Use Q (LastHit)"));
 
             MiscMenu.AddGroupLabel("-> Misc");
-            ComboMenu.Add("gapcloser", new CheckBox("Gapcloser (Misc)"));
-            ComboMenu.Add("igniteusage", new CheckBox("Use Ignite if damage from Ignite is higher than enemy HP"));
+            MiscMenu.Add("gapcloser", new CheckBox("Gapcloser (Misc)"));
+            MiscMenu.Add("igniteusage", new CheckBox("Use Ignite if damage from Ignite is higher than enemy HP"));
 
             Drawings.AddGroupLabel("-> Drawings");
             Drawings.Add("drawQ", new CheckBox("Draw Q (Draw)"));
@@ -120,8 +120,8 @@ namespace OuijaTemplate
         {//without prediction!
 
             var target = TargetSelector.GetTarget(Q.Range, DamageType.Mixed);
-
-            if (!target.IsValid || target.IsDead)
+            if (!target == null) return;
+            if (target.IsValidTarget)
             {
                 if (ComboMenu["useQ"].Cast<CheckBox>().CurrentValue && Q.IsReady())
                 {Q.Cast(target);}
@@ -134,8 +134,8 @@ namespace OuijaTemplate
         private static void HarassExec()
         {
             var target = TargetSelector.GetTarget(Q.Range, DamageType.Mixed);
-
-            if (!target.IsValid || target.IsDead)
+            if (!target == null) return;
+            if (target.IsValidTarget)
             {
                 if (HarassMenu["useQ"].Cast<CheckBox>().CurrentValue && Q.IsReady())
                 {Q.Cast(target);}
