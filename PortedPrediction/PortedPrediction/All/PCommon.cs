@@ -164,7 +164,6 @@ namespace PortedPrediction.All.PCommon
             }
             return totalDamage;
         }
-        //BUG
         public static bool IsSpellHeroCollision(Obj_AI_Base t, Spell.Skillshot QWER, int extraWith = 50)
         {
             foreach (var hero in EntityManager.Enemies.FindAll(hero => hero.IsValidTarget(QWER.Range + QWER.Width, true, QWER.RangeCheckSource) && t.NetworkId != hero.NetworkId))
@@ -172,11 +171,11 @@ namespace PortedPrediction.All.PCommon
                 var prediction = QWER.GetPrediction(hero);
                 var powCalc = Math.Pow((QWER.Width + extraWith + hero.BoundingRadius), 2);
                                                             //QWER.From.To2D()
-                if (prediction.UnitPosition.To2D().Distance(t.Position.To2D(), QWER.GetPrediction(t).CastPosition.To2D(), true, true) <= powCalc)
+                if (prediction.UnitPosition.To2D().Distance(EloBuddy.Player.Instance.Position.To2D(), QWER.GetPrediction(t).CastPosition.To2D(), true, true) <= powCalc)
                 {
                     return true;
                 }                                               //QWER.From.To2D()
-                else if (prediction.UnitPosition.To2D().Distance(t.Position.To2D(), t.ServerPosition.To2D(), true, true) <= powCalc)
+                else if (prediction.UnitPosition.To2D().Distance(EloBuddy.Player.Instance.Position.To2D(), t.ServerPosition.To2D(), true, true) <= powCalc)
                 {
                     return true;
                 }
